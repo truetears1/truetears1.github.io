@@ -1,439 +1,265 @@
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta content="en-us" http-equiv="Content-Language">
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<meta name="viewport" content="width=device-width, initial-scale=1.0" id="mixia_vpid">
-<title>主页</title>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>番剧时间表</title>
+</head>
 <style>
-/*下方这句不动它，翻译开始*/
+    ul {
+        padding-left: 15px;
+        color: #ffffff;
+    }
+    
+    li {
+        color: black;
+    }
 
-* {
-	padding: 0;
-	margin: 0;
+    body{
+        background-color: #fff8f8f8;
+    }
+
+    #yiyan{
+        position: fixed;
+        bottom: 33%;
+    }
+    .divleft {
+        font-size: 20px;
+        position: absolute;
+        width: 31%;
+        max-height: 25%;
+        background-color: hsl(99, 42.3%, 57.8%);
+        left: 1%;
+        top: -20%;
+        bottom: 0;
+        margin: auto;
+        text-align: center;
+        border-radius: 10px;
+    }
+    .divright::before,.divmiddle::before,.divleft::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    right: 5%;
+    bottom: -13px;
+    border-radius: 10px;
+    transform: translate(0, -15%) rotate(-6deg);
+    transform-origin: center center;
+    z-index: -1;
 }
+    .divleft::before{
+       background:hsl(99, 42.3%, 25%);
+       box-shadow: 0 0 20px 15px hsl(99, 42.3%, 25%);
+    }
+    .divmiddle::before{
+       background:hsl(34, 93.9%, 25%);
+       box-shadow: 0 0 20px 15px hsl(34, 93.9%, 25%);
+    }
+    .divright::before{
+       background:hsl(176, 95.5%, 25%);
+       box-shadow: 0 0 20px 15px hsl(176, 95.5%, 25%);
+    }
+    .divmiddle {
+        font-size: 20px;
+        position: absolute;
+        width: 31%;
+        height: 25%;
+        background-color: hsl(34, 93.9%, 55.3%);
+        left: 0;
+        right: 0;
+        top: -20%;
+        bottom: 0;
+        margin: auto;
+        text-align: center;
+        border-radius: 10px;
+    }
 
-/*翻译
-主页整体样式 
-文本对齐︰ 中心;
-背景色︰ #ffffff  使用夜间默认时修改为#000000即可
-}
-*/
-
-body {
-	text-align: center;
-	background-color: #ffffff;
-}
-
-/*翻译
-logo图标样式 
-宽度︰ 192px;
-高度︰ 108px;
-最大宽度︰ 250px;
-动画︰ flipInX 4s;
--webkit 动画︰ flipInX 4s
-}*/
-
-
-img.smaller {
-	width: 192px;
-	height: 108px;
-	max-width: 250px;
-	animation: flipInX 4s;
-	-webkit-animation: flipInX 4s
-}
-
-
-
-/*翻译
-logo添加文字样式 
-字体大小︰ 2em;
-白色空间︰ 正常;
-自动换行︰ 断词;
-文本修饰︰ 无;
-颜色: #232323
-}*/
-
-.logo {
-	font-size: 2em;
-	white-space: normal;
-	word-wrap: break-word;
-	text-decoration: none;
-	color: #232323
-}
-
-/*翻译
-搜索栏字体样式 
-宽度︰ 90%;
-高度︰ 40px;
-背景颜色︰ 透明;
-边境︰ 无;
-大纲︰ 0;
-字体大小︰ 18px;
-字体颜色: #000000;
-填充︰ 0 20px;
-边界半径︰ 50px
-}*/
-
-#search_input {
-	width: 90%;
-	height: 40px;
-	background-color: transparent;
-	border: none;
-	outline: 0;
-	font-size: 18px;
-	color: #000000;
-	padding: 0 20px;
-	border-radius: 50px
-}
-
-/*翻译
-搜索框边距 
-下边距︰ 30px;
-上边距︰ 20px;
-*/
-
-.search_part {
-	margin-bottom: 30px;
-	margin-top: 20px;
-}
-
-/*翻译
-跨度样式
-显示︰ 阻止;
-溢出︰ 隐藏;
-左填充︰ 5px;
-垂直对齐︰ 居中;
-*/
-
-span {
-	display: block;
-	overflow: hidden;
-	padding-left: 5px;
-	vertical-align: middle;
-}
-
-/*翻译
-搜索栏框架样式 {
-框阴影︰ 0 0 18px rgba(70,70,40,.255);括号里的颜色为Rgb默认，可进入http://rgb.phpddt.com/查询
--webkit 动画︰ fadeIn 2.5;
-动画︰ fadeIn 2.5;
-背景色︰ rgba(255,255,255,.100);
-边界半径︰ 50px;
-显示︰ 表;
-垂直对齐︰ 居中;
-宽度︰ 80%;根据你喜欢的宽度调整，目前我为了对齐图标使用80%
-高度︰ 40px;
-最大宽度︰ 400px;
-边距︰ 10px 默认布局;
-}
-*/
-
-.search_bar {
-	box-shadow: 0 0 18px rgba(70,70,40,.255);
-	-webkit-animation: fadeIn 2.5s;
-	animation: fadeIn 2.5s;
-	background-color: rgba(255,255,255,.100);
-	border-radius: 50px;
-	display: table;
-	vertical-align: middle;
-	width: 80%;
-	height: 40px;
-	max-width: 400px;
-	margin: 10px auto;
-}
-
-/*翻译
-搜索栏搜索目标确认图标样式，目前为米奇
-轮廓边框︰ 0;
-高度︰ 40px;
-浮标位置︰ 右;
-颜色: #000;
-字体大小︰ 16px;
-字体粗细︰ 700;
-边境︰ 无;
-背景颜色︰ 透明;
-填充︰ 0 13px 0 13px
-*/
-
-#search_submit {
-	outline: 0;
-	height: 40px;
-	float: right;
-	color: #000;
-	font-size: 16px;
-	font-weight: 700;
-	border: none;
-	background-color: transparent;
-	padding: 0 13px 0 13px
-}
-
-/*翻译
-书签图标排版目录样式 
-宽度︰ 100%;
-文本对齐︰ 中心;
-填充顶部︰ 15px;
-填充底部︰ 15px;
-*/
-
-#content {
-	width: 100%;
-	text-align: center;
-	padding-top: 15px;
-	padding-bottom: 15px;
-}
-
-/*翻译
-书签框架样式
--webkit 动画︰ fadeInDown 1s;
-动画︰ fadeInDown 1s;
-位置︰ 相对应;
-显示︰ 显示在内部;
-宽度︰ 75px;
-边境︰ 0;
-*/
-
-.box {
-	-webkit-animation: fadeInDown 1s;
-	animation: fadeInDown 1s;
-	position: relative;
-	display: inline-block;
-	width: 75px;
-	border: 0;
-}
-
-
-/*翻译
-书签图标样式
-宽度︰ 100%;
-高度︰ 100%;
-位置︰ 不受限制;
-左︰ 0;
-顶︰ 0;
-*/
-
-.box a {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	left: 0;
-	top: 0;
-}
-
-/*翻译
-书签字体样式
-颜色: #232323;使用夜间模式时修改为#eee或者#f2eada即可
-高度︰ 1.5em;
-线的高度︰ 1.5em;
-宽度︰ 72px;
-字体大小︰ 0.75em;
-白色空间︰ nowrap;
-溢出︰ 隐藏;
-边距︰ 默认布局;
--webkit 边框顶部右半径︰ 5px;
--webkit 边框底部右半径︰ 5px;
-文本溢出︰ 省略;
--o 文本溢出︰ 省略;
-气相色谱-质谱-文本-溢出︰ 省略;
-填充顶部︰ 3px;
-填充底部︰ 8px;
-*/
-
-.url {
-	color: #232323;
-	height: 1.5em;
-	line-height: 1.5em;
-	width: 72px;
-	font-size: 0.75em;
-	white-space: nowrap;
-	overflow: hidden;
-	margin: auto;
-	-webkit-border-top-right-radius: 5px;
-	-webkit-border-bottom-right-radius: 5px;
-	text-overflow: ellipsis;
-	-o-text-overflow: ellipsis;
-	-ms-text-overflow: ellipsis;
-	padding-top: 3px;
-	padding-bottom: 8px;
-}
-
-/*翻译
-字体样式 
-宽度︰ 3em;
-高度︰ 3em;
-最大宽度︰ 72px;
-*/
-
-.icon {
-	width: 3em;
-	height: 3em;
-	max-width: 72px;
-}
-
-/*
-下方为动画样式，不懂的不要修改
-*/
-
-@-webkit-keyframes flipInX {
-	0% {
-		-webkit-transform: perspective(400px) rotateX(90deg);
-		transform: perspective(400px) rotateX(90deg);
-		opacity: 0
-	}
-
-	40% {
-		-webkit-transform: perspective(400px) rotateX(-10deg);
-		transform: perspective(400px) rotateX(-10deg)
-	}
-
-	70% {
-		-webkit-transform: perspective(400px) rotateX(10deg);
-		transform: perspective(400px) rotateX(10deg)
-	}
-
-	100% {
-		-webkit-transform: perspective(400px) rotateX(0);
-		transform: perspective(400px) rotateX(0);
-		opacity: 1
-	}
-}
-
-@keyframes flipInX {
-	0% {
-		-webkit-transform: perspective(400px) rotateX(90deg);
-		-ms-transform: perspective(400px) rotateX(90deg);
-		transform: perspective(400px) rotateX(90deg);
-		opacity: 0
-	}
-
-	40% {
-		-webkit-transform: perspective(400px) rotateX(-10deg);
-		-ms-transform: perspective(400px) rotateX(-10deg);
-		transform: perspective(400px) rotateX(-10deg)
-	}
-
-	70% {
-		-webkit-transform: perspective(400px) rotateX(10deg);
-		-ms-transform: perspective(400px) rotateX(10deg);
-		transform: perspective(400px) rotateX(10deg)
-	}
-
-	100% {
-		-webkit-transform: perspective(400px) rotateX(0);
-		-ms-transform: perspective(400px) rotateX(0);
-		transform: perspective(400px) rotateX(0);
-		opacity: 1
-	}
-}
-
-@-webkit-keyframes fadeIn {
-	0% {
-		opacity: 0
-	}
-
-	100% {
-		opacity: 1
-	}
-}
-
-@keyframes fadeIn {
-	0% {
-		opacity: 0
-	}
-
-	100% {
-		opacity: 1
-	}
-}
-
-@-webkit-keyframes fadeInDown {
-	0% {
-		opacity: 0;
-		-webkit-transform: translateY(-20px);
-		transform: translateY(-20px)
-	}
-
-	100% {
-		opacity: 1;
-		-webkit-transform: translateY(0);
-		transform: translateY(0)
-	}
-}
-
-@keyframes fadeInDown {
-	0% {
-		opacity: 0;
-		-webkit-transform: translateY(-20px);
-		-ms-transform: translateY(-20px);
-		transform: translateY(-20px)
-	}
-
-	100% {
-		opacity: 1;
-		-webkit-transform: translateY(0);
-		-ms-transform: translateY(0);
-		transform: translateY(0)
-	}
-}
-</style></head>
-
+    .divright {
+        font-size: 20px;
+        position: absolute;
+        width: 31%;
+        height: 25%;
+        background-color: hsl(176, 95.5%, 43.5%);
+        top:-20%;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        text-align: center;
+        border-radius: 10px;
+    }
+    .add{
+        position: fixed;
+        right: 5%;
+        bottom: 5%;
+    }
+    .bto{
+        padding: 25px;
+         background-color: chartreuse;
+    }
+    .edit{
+        display: none;
+    }
+    h3 {
+        color: rgb(8, 19, 39);
+    }
+</style>
 
 <body>
-<div id="content">
-<br>
-<div class="search_part">
-<a class="logo" href="https://www.google.com">
-<img class="smaller" src="img/GoogleLogo.gif">
-</a>
-<br>
-<form onsubmit="return search()" class="search_bar">
-<input type="submit" id="search_submit" value="Start">
-<span><input class="search" type="text" value="" autocomplete="off" id="search_input"></span>
-</form>
-</div>
-<br>
+    <p style="font-size: 20px;" align="center">番剧更新时间表</p>
+    <div class="divleft" id="divleft">
+        <ul id="myList">
+        </ul>
+    </div>
+    <div class="divmiddle" id="divmiddle">
+        <ul id="myList2">
+        </ul>
+    </div>
+    <div class="divright" id="divright">
+        <ul id="myList3">
+        </ul>
+    </div>
+    <div class="add">
+    <input class="bto" id="bto" type="button" value="编辑"/>
+    </div>
+    <div class="edit">
+     输入内容<input type="text"/>
+    </div>
+<p id="yiyan"></p>
+<script>
+    function my() {
+var url="https://hitoapi.cc/sp/"
+var ajax = new XMLHttpRequest();
+ajax.onreadystatechange=function()
+  {
+  if (ajax.readyState===4 && ajax.status===200)
+    {
+   var hit = JSON.parse(ajax.responseText);
+    document.getElementById("yiyan").innerHTML="<br />"+hit.text+"<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp——"+hit.author+"&nbsp&nbsp"+hit.source;
+    }
+  };
+ajax.open('GET',url, true);
+ajax.send();
+    }
+    my();
+
+</script>
+
+<script type="text/javascript">  
+         var getRandomColor = function () {
+               var r = Math.floor(Math.random() * 256);
+               var g = Math.floor(Math.random() * 256);
+               var b = Math.floor(Math.random() * 256);
+              return 'rgb(' + r + ',' + g + ',' + b + ')';
+          };
+         var a_idx = 0;
+         jQuery(document).ready(function($) {
+         $("body").click(function(e) {
+            var a = new Array("富强","民主","和谐","文明","自由","平等","公正","法治","爱国","敬业","诚信","友善");
+            var $i = $("<span/>").text(a[a_idx]);
+            a_idx = (a_idx + 1) % a.length;
+            var x = e.pageX;
+            y = e.pageY;
+            $i.css({
+                "z-index": 999999999,
+                "top": y - 20,
+                "left": x,
+                "position": "absolute",
+                "font-weight": "bold",
+                "font-size":"14px",
+                "color":getRandomColor(),
+            });
+            $("body").append($i);
+            $i.animate({
+                "top": y - 180,
+                "opacity": 0
+            },
+            1500,
+            function() {
+                $i.remove();
+            });
+        });
+    });
+   </script>
+   <script src="https://blog-static.cnblogs.com/files/e-cat/cursor-effects.js"></script>
+
+<div id="tp-weather-widget"></div>
+<script>
+  (function(a,h,g,f,e,d,c,b){b=function(){d=h.createElement(g);c=h.getElementsByTagName(g)[0];d.src=e;d.charset="utf-8";d.async=1;c.parentNode.insertBefore(d,c)};a["SeniverseWeatherWidgetObject"]=f;a[f]||(a[f]=function(){(a[f].q=a[f].q||[]).push(arguments)});a[f].l=+new Date();if(a.attachEvent){a.attachEvent("onload",b)}else{a.addEventListener("load",b,false)}}(window,document,"script","SeniverseWeatherWidget","//cdn.sencdn.com/widget2/static/js/bundle.js?t="+parseInt((new Date().getTime() / 100000000).toString(),10)));
+  window.SeniverseWeatherWidget('show', {
+    flavor: "slim",
+    location: "WW0V9QP93VS8",
+    geolocation: true,
+    language: "zh-Hans",
+    unit: "c",
+    theme: "light",
+    token: "a9a00bef-9a1c-46cb-9991-70fe8c2b8bb4",
+    hover: "disabled",
+    container: "tp-weather-widget"
+  })
+</script>
+
+<a href="https://github.com/truetears1/truetears/blob/master/README.md" title="" target="_Blank" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#FD6C6C; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<a href="https://github.com/truetears1/truetears/blob/master/README.md" title="" target="_Blank" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+</body>
+<script>
+    var week = new Date().getDay();
+    var a = new Array("日", "一", "二", "三", "四", "五", "六");
+    var one = ["没有你要看的"];
+    var two = ["10:00灵剑尊"];
+    var three = ["10:00西行记"];
+    var four = ["10:00雪鹰领主", "10:00墓王之王"];
+    var five = ["10:00武庚纪", "17:00狐妖小红娘"];
+    var six = ["10:00斗罗大陆"];
+    var seven = ["没有你要看的"];
+    var num = ["seven", "one", "two", "three", "four", "five", "six"];
 
 
-<div class="box">
-<a href="https://translate.google.cn/m/translate"></a>
-<p><img class="icon" src="img/fanyi.png"></p>
-<p class="url">翻译</p>
-</div>
+    function create1() {
+        if (week == 0) week = 7;
+        var date = document.createTextNode("周" + a[week - 1]);
+        document.getElementById("myList").appendChild(date);
+        weeks = eval(num[week - 1]); //将字符串转换成变量
+        for (var i = 0; i < weeks.length; i++) {
+            var node = document.createElement("li");
+            var textnode = document.createTextNode(weeks[i]);
+            node.appendChild(textnode);
+            document.getElementById("myList").appendChild(node);
+        }
+    }
+    create1();
 
-<div class="box">
-<a href="https://github.com/truetears1/truetears/blob/master/README.md"></a>
-<p><img class="icon" src="img/GitHub.jpg"></p>
-<p class="url">个人GitHub</p>
-</div>
+    function create2() {
+         var week = new Date().getDay();
+        var date1 = document.createTextNode("今天是周" + a[week]);
+        document.getElementById("myList2").appendChild(date1);
+        weeks = eval(num[week]);
+        for (var i = 0; i < weeks.length; i++) {
+            var node = document.createElement("li");
+            var textnode = document.createTextNode(weeks[i]);
+            node.appendChild(textnode);
+            document.getElementById("myList2").appendChild(node);
+        }
+    }
+    create2();
 
-<div class="box">
-<a href="https://www.lanzous.com/b838135?from=groupmessage"></a>
-<p><img class="icon" src="img/xiaomi.png"></p>
-<p class="url">小米内置应用</p>
-</div>
+    function create3() {
+           var week = new Date().getDay();
+        if (week == 6) week = -1;
+        var date2 = document.createTextNode("周" + a[week + 1]);
+        document.getElementById("myList3").appendChild(date2);
+        weeks = eval(num[week + 1]);
+        for (var i = 0; i < weeks.length; i++) {
+            var node = document.createElement("li");
+            var textnode = document.createTextNode(weeks[i]);
+            node.appendChild(textnode);
+            document.getElementById("myList3").appendChild(node);
+        }
+    }
+    create3();
+</script>
 
-<div class="box">
-<a href="http://www.lanzou.com/u"></a>
-<p><img class="icon" src="img/lanzouyun.png"></p>
-<p class="url">蓝奏云</p>
-</div>
-<!--
-如若要添加可复制一段
-<div class="box">
-<a href="地址"></a>
-<p><img class="icon" src="img/icon6.png" ></p>
-<p class="url">书签名称</p>
-</div>
-其中链接在href中如href="地址"建议填写folder://自己创建的文件夹地址，这样创建一次不必再修改
-图标文件放置在img文件夹中定义如src="img/icon6.png"
-显示的标题在<p class="url">书签名称</p>之间定义如<p class="url">酷安</p>
-下方window.location.href =主页搜索引擎地址，目前为自用Pc版百度内部搜索，加上浏览器的顶部搜索即为双搜索，使用更方便
-
--->
-
-</div>
-
-<script type="text/javascript">
-function search(){if(document.getElementById("search_input").value != ""){window.location.href = "https://www.baidu.com/s?word=" + document.getElementById("search_input").value;document.getElementById("search_input").value = "";}return false;}</script>
-
-
-
-</body></html>
+</html>
+			
